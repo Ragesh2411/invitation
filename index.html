@@ -1,286 +1,163 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>J. Kumaresh ♥ N. Nisha — Wedding Invitation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kumaresh ❤️ Nisha Wedding</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      background: linear-gradient(180deg, #ffe6eb 0%, #fff 100%);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    h1 {
+      font-family: "Great Vibes", cursive;
+      color: #b91c1c;
+      font-size: 2.5rem;
+      margin-top: 40px;
+    }
 
-<style>
-  :root{
-    --rose:#b56576;
-    --rose-dark:#8e5572;
-    --muted:#7a6b78;
-    --bg1:#fff6f8;
-    --bg2:#fff0f4;
-    --card:#ffffff;
-  }
+    p {
+      color: #444;
+      font-size: 1rem;
+    }
 
-  html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;}
-  body{
-    background: radial-gradient(1200px 600px at 10% 10%, rgba(181,101,118,0.05), transparent),
-                radial-gradient(1000px 500px at 90% 90%, rgba(181,101,118,0.03), transparent),
-                linear-gradient(180deg,var(--bg1),var(--bg2));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:28px;
-    -webkit-font-smoothing:antialiased;
-  }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      margin-top: 20px;
+    }
 
-  /* flowing hearts background (CSS animated) */
-  .hearts {
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
-    z-index:0;
-  }
-  .hearts i{
-    position:absolute;
-    display:block;
-    width:28px;
-    height:28px;
-    transform:translateY(110vh) rotate(0deg);
-    opacity:0;
-    font-style:normal;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.06));
-    animation: rise linear infinite;
-    will-change: transform, opacity;
-  }
-  /* different heart sizes & durations */
-  .hearts i:nth-child(1){ left:5%; font-size:22px; animation-duration:9s; animation-delay:0s; }
-  .hearts i:nth-child(2){ left:18%; font-size:18px; animation-duration:11s; animation-delay:2s; }
-  .hearts i:nth-child(3){ left:30%; font-size:26px; animation-duration:10s; animation-delay:0.5s; }
-  .hearts i:nth-child(4){ left:44%; font-size:20px; animation-duration:12s; animation-delay:1s; }
-  .hearts i:nth-child(5){ left:58%; font-size:24px; animation-duration:9.5s; animation-delay:3s; }
-  .hearts i:nth-child(6){ left:72%; font-size:16px; animation-duration:13s; animation-delay:0.8s; }
-  .hearts i:nth-child(7){ left:86%; font-size:30px; animation-duration:8.5s; animation-delay:1.5s; }
+    .date-time {
+      background: #ffe4ec;
+      border-radius: 15px;
+      padding: 10px;
+      margin-top: 20px;
+    }
 
-  @keyframes rise {
-    0% { transform: translateY(110vh) scale(0.7) rotate(-10deg); opacity:0; }
-    10% { opacity:1; }
-    50% { transform: translateY(40vh) scale(1.0) rotate(10deg); opacity:0.95; }
-    100% { transform: translateY(-30vh) scale(1.2) rotate(25deg); opacity:0; }
-  }
+    .btn {
+      display: inline-block;
+      background: #b91c1c;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 15px;
+    }
 
-  /* center card */
-  .card {
-    position:relative;
-    z-index:1;
-    width:100%;
-    max-width:520px;
-    background:var(--card);
-    border-radius:18px;
-    box-shadow:0 18px 40px rgba(25,20,30,0.08);
-    padding:28px 20px;
-    margin:12px;
-    text-align:center;
-    overflow:hidden;
-  }
+    .countdown {
+      font-size: 1.2rem;
+      color: #b91c1c;
+      font-weight: bold;
+      margin-top: 15px;
+    }
 
-  /* subtle top flourish */
-  .top-flourish{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin-top:-10px;
-  }
-  .couple-svg{
-    width:140px;
-    height:auto;
-    margin-top:-10px;
-    margin-bottom:6px;
-    opacity:0.98;
-    transform-origin:center;
-    animation: floatTiny 4s ease-in-out infinite;
-  }
-  @keyframes floatTiny { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
+    /* Floating hearts background animation */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: floatUp 10s linear infinite;
+      opacity: 0.8;
+      left: calc(10% + 80% * var(--random-x));
+    }
 
-  h1{
-    font-family:'Great Vibes',cursive;
-    font-size:48px;
-    line-height:0.9;
-    margin:6px 0 6px;
-    color:var(--rose);
-    letter-spacing:0.6px;
-  }
-  .heart-emoji{
-    display:inline-block;
-    transform:translateY(3px);
-    font-size:22px;
-    margin-left:6px;
-    animation: beat 1.4s infinite;
-  }
-  @keyframes beat {
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.18)}
-  }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
 
-  h2{
-    font-weight:600;
-    margin:6px 0 12px;
-    color:var(--muted);
-    font-size:15px;
-  }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
 
-  .info {
-    background: linear-gradient(180deg, rgba(245,231,236,0.85), rgba(255,245,247,0.9));
-    border-radius:12px;
-    padding:18px;
-    margin:10px 6px;
-    text-align:left;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-  }
-  .info p{ margin:8px 0; font-weight:600; color:#333; font-size:15px;}
-  .info p span { display:block; font-weight:400; color:#4f3f49; font-size:14px; margin-top:6px; font-weight:500; }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
 
-  /* countdown */
-  .countdown {
-    margin-top:14px;
-    font-weight:700;
-    color:var(--rose-dark);
-    font-size:18px;
-  }
-  .countdown small { display:block; font-weight:500; font-size:12px; color:#887684; margin-top:6px; }
-
-  /* button */
-  .row {
-    display:flex;
-    gap:12px;
-    justify-content:center;
-    margin-top:16px;
-    flex-wrap:wrap;
-  }
-  .btn {
-    padding:12px 18px;
-    border-radius:12px;
-    text-decoration:none;
-    font-weight:600;
-    background:linear-gradient(180deg,var(--rose),var(--rose-dark));
-    color:white;
-    box-shadow:0 6px 18px rgba(142,85,114,0.14);
-    border:none;
-  }
-  .btn.secondary {
-    background:transparent;
-    color:var(--rose-dark);
-    border:1px solid rgba(142,85,114,0.08);
-  }
-
-  footer { margin-top:14px; color:#6f5e67; font-size:13px; }
-
-  /* responsiveness */
-  @media (max-width:420px){
-    h1{ font-size:36px; }
-    .couple-svg{ width:120px; }
-    .card{ padding:20px; border-radius:14px; }
-    .info{ padding:14px; }
-  }
-</style>
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.8;
+      }
+      to {
+        transform: translateY(-110vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
+  <h1>J. Kumaresh ❤️ N. Nisha</h1>
+  <p>Invite you to celebrate their wedding</p>
 
-  <!-- flowing hearts background -->
-  <div class="hearts" aria-hidden="true">
-    <i style="color: #f3a6b1;">❤</i>
-    <i style="color: #f7bcc7;">❤</i>
-    <i style="color: #e88aa5;">❤</i>
-    <i style="color: #ffccd8;">❤</i>
-    <i style="color: #f3a6b1;">❤</i>
-    <i style="color: #f7bcc7;">❤</i>
-    <i style="color: #e88aa5;">❤</i>
+  <div class="card">
+    <div class="date-time">
+      <p><strong>Date:</strong> Thursday, 6 March 2025</p>
+      <p><strong>Time:</strong> 6:00 – 7:30 AM</p>
+      <p><strong>Venue:</strong> Harsha Mahal, Pavithirammanikam</p>
+    </div>
+
+    <p class="countdown" id="countdown">Calculating time left...</p>
+
+    <a href="https://maps.app.goo.gl/w5uCCuTUzqXq72hM7" class="btn">📍 View Location</a>
   </div>
 
-  <main class="card" role="main" aria-labelledby="invite-title">
-    <div class="top-flourish" aria-hidden="true">
-      <!-- Inline romantic SVG couple art (always loads) -->
-      <svg class="couple-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Couple illustration">
-        <!-- soft background heart -->
-        <g transform="translate(160,95)">
-          <path d="M-60,-10 C-60,-70 40,-70 40,-10 C40,25 -2,52 -2,52 C-2,52 -44,25 -60,-10 Z" fill="#ffe6ec" opacity="0.9" transform="scale(1.15) translate(-10,0)"/>
-        </g>
-        <!-- groom head -->
-        <circle cx="110" cy="70" r="20" fill="#e1b3b8"/>
-        <!-- bride head -->
-        <circle cx="200" cy="60" r="22" fill="#f0c9cc"/>
-        <!-- groom body -->
-        <path d="M92 90 q20 30 34 0 q-10 28 -34 28 q-20 0 -34 -28 q14 30 34 0z" fill="#8e5572" opacity="0.95"/>
-        <!-- bride body -->
-        <path d="M175 88 q24 40 48 0 q-18 36 -48 36 q-26 0 -48 -36 q24 40 48 0z" fill="#b56576" opacity="0.95"/>
-        <!-- small accent heart -->
-        <path d="M160 45 c6 -10 22 -10 28 0 c6 10 -2 22 -14 30 c-12 -8 -22 -20 -14 -30z" fill="#ff9fb6"/>
-      </svg>
-    </div>
+  <p>“Two hearts, one promise – forever begins here.” 💐</p>
 
-    <h1 id="invite-title">J. Kumaresh <span class="heart-emoji">❤️</span><br/> N. Nisha</h1>
-    <h2>Invite you to celebrate their wedding</h2>
-
-    <div class="info" role="region" aria-label="Event details">
-      <p><strong>Date:</strong> <span>Thursday, 6 March 2025</span></p>
-      <p><strong>Time:</strong> <span>6:00 – 7:30 AM (IST)</span></p>
-      <p><strong>Venue:</strong> <span>Harsha Mahal, Pavithiramanikam</span></p>
-    </div>
-
-    <div class="countdown" id="countdown" aria-live="polite" title="Time left until wedding">
-      Loading time left...
-      <small>Time left until the wedding starts</small>
-    </div>
-
-    <div class="row">
-      <a class="btn" href="https://maps.app.goo.gl/Ttnw6cZ1FN1VcZ348" target="_blank" rel="noopener">📍 View Location</a>
-      <button class="btn secondary" id="rsvpBtn" onclick="openRSVP()">✉️ RSVP</button>
-    </div>
-
-    <footer>“Two hearts, one promise — forever begins here.” 💐</footer>
-  </main>
-
-<script>
-  // Countdown precise with days/h/m/s
-  const countdownEl = document.getElementById('countdown');
-  // wedding start in local timezone IST offset provided as +05:30
-  // Use ISO string with timezone offset to ensure correct time: 2025-03-06T06:00:00+05:30
-  const wedding = new Date("2025-03-06T06:00:00+05:30");
-
-  function fmt(num){ return String(num).padStart(2,'0'); }
-
-  function updateCountdown(){
-    const now = new Date();
-    let diff = wedding - now; // ms
-    if(diff <= 0){
-      countdownEl.innerHTML = '💐 Wedding in progress!';
-      return;
+  <script>
+    // Create floating hearts
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.setProperty("--random-x", Math.random());
+      heart.style.animationDelay = `${Math.random() * 10}s`;
+      document.body.appendChild(heart);
     }
 
-    const days = Math.floor(diff / (1000*60*60*24));
-    diff -= days * (1000*60*60*24);
-    const hours = Math.floor(diff / (1000*60*60));
-    diff -= hours * (1000*60*60);
-    const minutes = Math.floor(diff / (1000*60));
-    diff -= minutes * (1000*60);
-    const seconds = Math.floor(diff/1000);
+    // Countdown timer
+    const countdownElement = document.getElementById("countdown");
+    const weddingDate = new Date("March 6, 2025 06:00:00").getTime();
 
-    // show as: "12d 05:23:12"
-    countdownEl.innerHTML = `<strong>${days} day${days!==1?'s':''}</strong> &nbsp; ${fmt(hours)}:${fmt(minutes)}:${fmt(seconds)} <br><small>days • hh:mm:ss</small>`;
-  }
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+      if (distance < 0) {
+        countdownElement.innerHTML = "💍 Wedding in progress!";
+        return;
+      }
 
-  // RSVP placeholder function
-  function openRSVP(){
-    // if you have a Google Form, replace below URL
-    const rsvpUrl = "https://forms.gle/YOUR_RSVP_FORM"; // CHANGE THIS to your form
-    // if not set, show a friendly prompt for phone or SMS
-    if(rsvpUrl.includes("YOUR_RSVP_FORM")){
-      const phone = prompt("Enter your name and phone number to send RSVP (owner will receive). Example: 'Kumar - 98765xxxx0'");
-      if(phone) alert("Thank you! Please inform the bride/groom family as well — we'll record your RSVP.");
-    } else {
-      window.open(rsvpUrl,"_blank");
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.innerHTML = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s left`;
     }
-  }
-</script>
 
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
