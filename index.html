@@ -20,7 +20,12 @@
 
     /* Reset + base */
     *{box-sizing:border-box}
-    html,body{height:100%}
+    	html, body {
+  	margin: 0;
+  	padding: 0;
+  	overflow-x: hidden;
+  	scroll-behavior: smooth;
+	}
     body{
       margin:0;
       font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
@@ -115,7 +120,7 @@
     }
     .couple-photo img{
       width:100%;
-      height:100%;
+      height:140%;
       object-fit:cover;
       display:block;
     }
@@ -234,7 +239,7 @@
     .heart-pulse{
       position:absolute;
       left:50%;
-      top:14%;
+      top:4%;
       transform:translateX(-50%);
       pointer-events:none;
     }
@@ -291,11 +296,27 @@
       margin-top:10px;
       padding:6px 10px;
     }
+.text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-    /* MOBILE OPTIMIZATION */
+@media (min-width: 769px) {
+  .photo-row {
+    justify-content: flex-start;  /* photo on left */
+    text-align: left;
+  }
+  .text-block {
+    text-align: left;
+    margin-left: 16px;
+  }
+}
+
+
 @media (max-width:480px) {
   body {
-    padding: 16px;
+    padding: 12px;
     background: linear-gradient(180deg,#fff,#fff6f8);
   }
 
@@ -304,18 +325,18 @@
   }
 
   .invite-card {
-    padding: 14px;
-    gap: 12px;
+    padding: 12px;
+    gap: 10px;
     border-radius: 16px;
     box-shadow: 0 4px 18px rgba(0,0,0,0.08);
   }
 
   .hero {
-    padding-top: 6px;
+    padding-top: 10px; /* ✅ reduced so names are visible */
   }
 
   .names h1 {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     text-align: center;
     line-height: 1.1;
   }
@@ -325,11 +346,19 @@
     text-align: center;
   }
 
-  .couple-photo {
-    width: 95px;
-    height: 95px;
-    border-width: 4px;
+  .photo-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
+  .text-block {
+    margin-left: 0;
+  }
+
+  .couple-photo {
+    margin-bottom: 12px;
+  }
+
 
   .pill {
     width: 100%;
@@ -383,11 +412,6 @@
     padding: 6px;
   }
 
-  .info .pill {
-    width: 100%;
-    padding: 12px;
-  }
-
   .suggest {
     font-size: 0.8rem;
     margin-top: 8px;
@@ -402,25 +426,28 @@
 <body>
   <div class="wrap" role="main">
     <section class="invite-card" aria-labelledby="inviteTitle">
-      <!-- heart pulse decorative -->
-      <div class="heart-pulse" aria-hidden="true">
-        <div class="pulse" style="transform:translate(-50%,-50%) rotate(45deg)"></div>
-      </div>
+
 
       <!-- LEFT: hero / details -->
       <div class="hero" style="z-index:2">
-        <div class="photo-row fade-in" aria-hidden="false">
-          <div class="couple-photo" aria-hidden="true">
-            <!-- REPLACE "couple-photo.jpg" with your image file -->
-            <img src="couple-photo.jpg" alt="J. Kumaresh & N. Nisha" id="coupleImg" />
-          </div>
-        </div>
+<div class="photo-row fade-in" aria-hidden="false">
+  <div class="couple-photo" aria-hidden="true" margin-top:12px>
+    <img src="kumareshnisha.jpg" alt="J. Kumaresh & N. Nisha" id="coupleImg" />
+  </div>
 
-        <div class="names" style="z-index:2">
-          <h1 id="inviteTitle">Sevan J. Kumaresh ♥ Selvi N. Nisha</h1>
-        </div>
 
-        <div class="subtitle" id="subtitleText">Invite you to celebrate their wedding</div>
+  <div class="text-block">
+    <div class="names" style="z-index:2">
+      <h1 id="inviteTitle">Selvan J. Kumaresh ♥ Selvi N. Nisha</h1>
+    </div>
+    <div class="subtitle" id="subtitleText">Invite you to celebrate their wedding</div>
+  </div>
+</div>
+
+      <!-- heart pulse decorative -->
+     <div class="heart-pulse" aria-hidden="true">
+        <div class="pulse" style="transform:translate(-50%,-50%) rotate(30deg)"></div>
+      </div>
 
         <div class="translations" aria-hidden="false">
           <div class="toggle" role="tablist" aria-label="Language selection">
@@ -430,10 +457,17 @@
         </div>
 
         <div class="pill" id="detailsCard" role="region" aria-live="polite" style="z-index:2">
-          <p><strong>Groom:</strong> Sevan J. Kumaresh, B.E <span style="color:var(--muted)">S/O R. Jayakumar & J. Santhakumari</span></p>
-          <p><strong>Bride:</strong> Selvi N. Nisha, B.Tech <span style="color:var(--muted)">D/O Nallakumar (Late) & N. Malarvizhi</span></p>
+	      <aside class="info" aria-label="Additional information" style="z-index:2">
+        <div class="pill" style="min-width:300px">
+          <p style="font-size:1.05rem; font-weight:700; color:var(--accent)">Ceremony Details</p>
+
+
+        </div>
+          <p><strong>Selvan J. Kumaresh, B.E</strong>  <span style="color:var(--muted)">S/O R. Jayakumar & J. Santhakumari</span></p>
+          <p><strong>Selvi N. Nisha, B.Tech</strong>  <span style="color:var(--muted)">D/O Nallakumar (Late) & N. Malarvizhi</span></p>
 
           <div class="meta" aria-hidden="false">
+          
             <div class="chip" title="Date">📅 Fri, 6 March 2026</div>
             <div class="chip" title="Time">⏰ 6:00 – 7:30 AM (Muhurtham)</div>
             <div class="chip" title="Venue">📍 Harsha Mahal, Pavithiramanikam, Thiruvarur</div>
@@ -446,7 +480,7 @@
           <div class="actions" aria-hidden="false">
             <!-- use maps.app link or google maps search -->
             <a class="btn" id="viewMap" target="_blank" rel="noopener" href="https://maps.app.goo.gl/w5uCCuTUzqXq72hM7">📍 View Venue</a>
-            <a class="btn secondary" id="addCal" href="#" title="Add to calendar">➕ Add to Calendar</a>
+          
           </div>
         </div>
 
@@ -454,19 +488,6 @@
         <p class="suggest fade-in" id="quote">“Two hearts, one promise — forever begins here.”</p>
       </div>
 
-      <!-- RIGHT: decorative / translations / RSVP -->
-      <aside class="info" aria-label="Additional information" style="z-index:2">
-        <div class="pill" style="min-width:300px">
-          <p style="font-size:1.05rem; font-weight:700; color:var(--accent)">Ceremony Details</p>
-          <p><strong>Date:</strong> Friday, 6 March 2026</p>
-          <p><strong>Time (Muhurtham):</strong> 6:00 AM — 7:30 AM</p>
-          <p><strong>Venue:</strong> Harsha Mahal, Pavithiramanikam, Thiruvarur</p>
-
-          <div style="margin-top:8px; display:flex; gap:8px; justify-content:center;">
-            <a class="btn" id="rsvpBtn" href="mailto:?subject=RSVP%20for%20Wedding%20of%20Kumaresh%20and%20Nisha&body=I%20would%20like%20to%20confirm%20attendance%20for%20the%20wedding." aria-label="RSVP via email">✉️ RSVP</a>
-            <a class="btn secondary" id="shareBtn" href="#" aria-label="Share invitation">🔗 Share</a>
-          </div>
-        </div>
 
         <!-- Animated translation text area -->
         <div id="translationBox" style="margin-top:12px; text-align:center; min-height:84px; display:flex;align-items:center;justify-content:center;flex-direction:column;">
@@ -476,9 +497,6 @@
           </div>
         </div>
 
-        <div class="suggest" style="margin-top:12px;">
-          <strong>Suggestion:</strong> Replace the placeholder image `couple-photo.jpg` with a high-resolution portrait (approx 1200×1200) and push to GitHub Pages. Use the "Add to Calendar" link to generate .ics for guests.
-        </div>
       </aside>
     </section>
   </div>
@@ -527,9 +545,9 @@
       btnEN.setAttribute('aria-selected','true'); btnTA.setAttribute('aria-selected','false');
       // animate
       engText.style.opacity = 1; engText.style.transform = 'translateY(0)';
-      tamText.style.opacity = 0; tamText.style.transform = 'translateY(6px)';
+      tamText.style.opacity = 0; tamText.style.transform = 'translateY(6px)'; 
       subtitle.innerText = "Invite you to celebrate their wedding";
-      inviteTitle.innerText = "Sevan J. Kumaresh ♥ Selvi N. Nisha";
+      inviteTitle.innerText = "selvan J. Kumaresh ♥ selvi N. Nisha";
     });
 
     btnTA.addEventListener('click', () => {
@@ -538,7 +556,7 @@
       tamText.style.opacity = 1; tamText.style.transform = 'translateY(0)';
       engText.style.opacity = 0; engText.style.transform = 'translateY(6px)';
       subtitle.innerText = "அவர்களின் திருமணத்தை கொண்டாட உங்களை அழைக்கின்றனர்";
-      inviteTitle.innerText = "சேவன் ஜே. குமரேஷ் ♥ செல்வி என். நிஷா";
+      inviteTitle.innerText = "செல்வன் J.குமரேஷ் ♥ செல்வி N.நிஷா";
     });
 
     // ---------- Floating hearts generation ----------
@@ -634,4 +652,4 @@
 
   </script>
 </body>
-      </html>
+</html>
