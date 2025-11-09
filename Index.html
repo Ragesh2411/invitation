@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wedding Invitation — J. Kumaresh & N. Nisha</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#b91c1c;
+      --accent-2:#ff6b95;
+      --muted:#6b6b6b;
+      --card-bg: rgba(255,255,255,0.9);
+      --glass: rgba(255,255,255,0.6);
+      --maxWidth: 980px;
+    }
+
+    /* Reset + base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      -webkit-font-smoothing:antialiased;
+      background: radial-gradient(1200px 600px at 10% 10%, #fff0f2 0%, transparent 10%),
+                  radial-gradient(900px 400px at 90% 90%, #fff8f4 0%, transparent 10%),
+                  linear-gradient(180deg,#fff 0%, #fff6f8 100%);
+      color:#222;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      overflow-x:hidden;
+    }
+
+    /* Container */
+    .wrap{
+      width:100%;
+      max-width:var(--maxWidth);
+      margin:0 auto;
+      padding:18px;
+    }
+    .invite-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--card-bg));
+      border-radius:20px;
+      box-shadow: 0 8px 30px rgba(16,24,40,0.12);
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      border: 1px solid rgba(185,28,28,0.06);
+    }
+
+    /* Top hero */
+    .hero{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      padding-top:10px;
+    }
+    .names{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .names h1{
+      font-family:"Great Vibes",cursive;
+      font-size:2.6rem;
+      color:var(--accent);
+      margin:0;
+      line-height:1;
+      letter-spacing:0.6px;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.02);
+      transform-origin:center;
+      animation:popIn 900ms cubic-bezier(.2,.9,.2,1) both;
+    }
+    .subtitle{
+      font-weight:600;
+      color:var(--muted);
+      margin-top:4px;
+      font-size:0.95rem;
+      opacity:0.95;
+      transform: translateY(0);
+      animation:fadeUp 900ms 120ms both;
+    }
+
+    /* Couple photo */
+    .photo-row{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+      flex-direction:row;
+    }
+    .couple-photo{
+      width:132px;
+      height:132px;
+      border-radius:50%;
+      overflow:hidden;
+      border:6px solid rgba(255,255,255,0.85);
+      box-shadow: 0 10px 30px rgba(185,28,28,0.08);
+      background:linear-gradient(180deg,#fff,#fff0f0);
+      display:inline-block;
+      flex-shrink:0;
+    }
+    .couple-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Info card */
+    .info{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      padding:12px;
+    }
+    .pill{
+      background: linear-gradient(90deg, rgba(185,28,28,0.06), rgba(255,107,149,0.06));
+      border-radius:12px;
+      padding:12px 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      min-width:240px;
+    }
+    .pill p{margin:6px 0; font-size:0.95rem; color:#333}
+    .meta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+    .meta .chip{
+      background:rgba(0,0,0,0.03);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:0.86rem;
+      color:#333;
+      font-weight:600;
+    }
+
+    /* Countdown */
+    .countdown{
+      font-weight:700;
+      color:var(--accent);
+      font-size:1.05rem;
+      margin-top:8px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .time-block{display:flex;gap:6px;align-items:center}
+
+    /* Buttons */
+    .actions{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .btn{
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:0.95rem;
+      text-decoration:none;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      box-shadow: 0 6px 16px rgba(185,28,28,0.12);
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(185,28,28,0.12);
+      font-weight:600;
+    }
+
+    /* Translation toggle */
+    .translations{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      margin-top:8px;
+    }
+    .toggle{
+      display:inline-flex;
+      gap:6px;
+      background:var(--glass);
+      border-radius:999px;
+      padding:6px;
+      border:1px solid rgba(0,0,0,0.03);
+    }
+    .toggle button{
+      background:transparent;
+      border:none;
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .toggle button.active{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;
+      box-shadow: 0 6px 20px rgba(185,28,28,0.12);
+    }
+
+    /* Heart animations - center pulse */
+    .heart-pulse{
+      position:absolute;
+      left:50%;
+      top:14%;
+      transform:translateX(-50%);
+      pointer-events:none;
+    }
+    .pulse{
+      width:22px;height:22px;transform:rotate(45deg);
+      background:linear-gradient(180deg,var(--accent),var(--accent-2));
+      position:relative;border-radius:3px;opacity:0.95;
+      box-shadow:0 8px 25px rgba(185,28,28,0.18);
+      animation:beat 1400ms infinite ease-in-out;
+    }
+    .pulse::before,.pulse::after{
+      content:""; position:absolute; width:22px;height:22px; border-radius:50%; background:inherit;
+    }
+    .pulse::before{top:-11px; left:0}
+    .pulse::after{left:-11px; top:0}
+
+    @keyframes beat{
+      0%{transform:translate(-50%,-50%) rotate(45deg) scale(1)}
+      30%{transform:translate(-50%,-50%) rotate(45deg) scale(1.18)}
+      60%{transform:translate(-50%,-50%) rotate(45deg) scale(0.98)}
+      100%{transform:translate(-50%,-50%) rotate(45deg) scale(1)}
+    }
+
+    /* Floating hearts background (reduced for performance on mobile) */
+    .floating-heart{
+      position:fixed;
+      bottom:-10vh;
+      width:18px;height:18px;
+      transform:rotate(45deg);
+      pointer-events:none;
+      opacity:0.9;
+      z-index:0;
+    }
+    .floating-heart::before,.floating-heart::after{
+      content:""; position:absolute; width:18px;height:18px;border-radius:50%; background:linear-gradient(180deg,var(--accent),var(--accent-2));
+    }
+    .floating-heart::before{top:-9px; left:0}
+    .floating-heart::after{left:-9px; top:0}
+    @keyframes floatUp {
+      from{transform:translateY(0) rotate(45deg);opacity:0.9}
+      to{transform:translateY(-120vh) rotate(45deg);opacity:0}
+    }
+
+    /* Animations */
+    @keyframes popIn{ from{transform:scale(.92);opacity:0} to{transform:scale(1);opacity:1}}
+    @keyframes fadeUp{ from{transform:translateY(6px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .fade-in{ animation:fadeUp 600ms both; }
+
+    /* Suggestion / footer */
+    .suggest{
+      font-size:0.86rem;
+      color:var(--muted);
+      text-align:center;
+      margin-top:10px;
+      padding:6px 10px;
+    }
+
+    /* Responsive */
+    @media (min-width:760px){
+      .invite-card{ grid-template-columns: 1fr 380px; gap:20px; padding:26px; align-items:center; }
+      .hero{ align-items:flex-start; text-align:left; }
+      .photo-row{ justify-content:flex-start }
+      .info{ align-items:flex-start }
+    }
+
+    @media (max-width:420px){
+      .names h1{ font-size:2.1rem }
+      .couple-photo{ width:110px; height:110px }
+      .pill{ min-width:unset; width:100% }
+      .btn{ padding:9px 12px; font-size:0.9rem }
+    }
+
+    /* accessibility focus */
+    a:focus, button:focus { outline:3px solid rgba(185,28,28,0.15); outline-offset:3px; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <section class="invite-card" aria-labelledby="inviteTitle">
+      <!-- heart pulse decorative -->
+      <div class="heart-pulse" aria-hidden="true">
+        <div class="pulse" style="transform:translate(-50%,-50%) rotate(45deg)"></div>
+      </div>
+
+      <!-- LEFT: hero / details -->
+      <div class="hero" style="z-index:2">
+        <div class="photo-row fade-in" aria-hidden="false">
+          <div class="couple-photo" aria-hidden="true">
+            <!-- REPLACE "couple-photo.jpg" with your image file -->
+            <img src="couple-photo.jpg" alt="J. Kumaresh & N. Nisha" id="coupleImg" />
+          </div>
+        </div>
+
+        <div class="names" style="z-index:2">
+          <h1 id="inviteTitle">Sevan J. Kumaresh ♥ Selvi N. Nisha</h1>
+        </div>
+
+        <div class="subtitle" id="subtitleText">Invite you to celebrate their wedding</div>
+
+        <div class="translations" aria-hidden="false">
+          <div class="toggle" role="tablist" aria-label="Language selection">
+            <button id="lang-en" class="active" aria-selected="true" role="tab">EN</button>
+            <button id="lang-ta" aria-selected="false" role="tab">தமிழ்</button>
+          </div>
+        </div>
+
+        <div class="pill" id="detailsCard" role="region" aria-live="polite" style="z-index:2">
+          <p><strong>Groom:</strong> Sevan J. Kumaresh, B.E <span style="color:var(--muted)">S/O R. Jayakumar & J. Santhakumari</span></p>
+          <p><strong>Bride:</strong> Selvi N. Nisha, B.Tech <span style="color:var(--muted)">D/O Nallakumar (Late) & N. Malarvizhi</span></p>
+
+          <div class="meta" aria-hidden="false">
+            <div class="chip" title="Date">📅 Fri, 6 March 2026</div>
+            <div class="chip" title="Time">⏰ 6:00 – 7:30 AM (Muhurtham)</div>
+            <div class="chip" title="Venue">📍 Harsha Mahal, Pavithiramanikam, Thiruvarur</div>
+          </div>
+
+          <div class="countdown" role="timer" aria-atomic="true" aria-live="polite" id="countdown">
+            ⏳ Calculating time left...
+          </div>
+
+          <div class="actions" aria-hidden="false">
+            <!-- use maps.app link or google maps search -->
+            <a class="btn" id="viewMap" target="_blank" rel="noopener" href="https://maps.app.goo.gl/w5uCCuTUzqXq72hM7">📍 View Venue</a>
+            <a class="btn secondary" id="addCal" href="#" title="Add to calendar">➕ Add to Calendar</a>
+          </div>
+        </div>
+
+        <!-- small quote with animation -->
+        <p class="suggest fade-in" id="quote">“Two hearts, one promise — forever begins here.”</p>
+      </div>
+
+      <!-- RIGHT: decorative / translations / RSVP -->
+      <aside class="info" aria-label="Additional information" style="z-index:2">
+        <div class="pill" style="min-width:300px">
+          <p style="font-size:1.05rem; font-weight:700; color:var(--accent)">Ceremony Details</p>
+          <p><strong>Date:</strong> Friday, 6 March 2026</p>
+          <p><strong>Time (Muhurtham):</strong> 6:00 AM — 7:30 AM</p>
+          <p><strong>Venue:</strong> Harsha Mahal, Pavithiramanikam, Thiruvarur</p>
+
+          <div style="margin-top:8px; display:flex; gap:8px; justify-content:center;">
+            <a class="btn" id="rsvpBtn" href="mailto:?subject=RSVP%20for%20Wedding%20of%20Kumaresh%20and%20Nisha&body=I%20would%20like%20to%20confirm%20attendance%20for%20the%20wedding." aria-label="RSVP via email">✉️ RSVP</a>
+            <a class="btn secondary" id="shareBtn" href="#" aria-label="Share invitation">🔗 Share</a>
+          </div>
+        </div>
+
+        <!-- Animated translation text area -->
+        <div id="translationBox" style="margin-top:12px; text-align:center; min-height:84px; display:flex;align-items:center;justify-content:center;flex-direction:column;">
+          <div id="engText" style="opacity:1; transition:all 400ms ease">Join us in blessing the couple as they begin their new life together.</div>
+          <div id="tamText" style="opacity:0; transform:translateY(6px); transition:all 400ms ease; font-family: 'Noto Sans Tamil', 'Poppins', sans-serif; font-size:0.98rem;">
+            எங்கள் குடும்பத்தினருடன் இணைந்து இந்த ஜோடியை வாழ்த்துங்கள்.
+          </div>
+        </div>
+
+        <div class="suggest" style="margin-top:12px;">
+          <strong>Suggestion:</strong> Replace the placeholder image `couple-photo.jpg` with a high-resolution portrait (approx 1200×1200) and push to GitHub Pages. Use the "Add to Calendar" link to generate .ics for guests.
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <!-- Floating hearts (generated via JS) -->
+  <script>
+    // ---------- Configuration ----------
+    const weddingDateStr = "2026-03-06T06:00:00"; // ISO (local) - Muhurtham start
+    const weddingDate = new Date(weddingDateStr);
+
+    // ---------- Countdown ----------
+    const countdownEl = document.getElementById('countdown');
+
+    function pad(n){ return n.toString().padStart(2,'0'); }
+
+    function updateCountdown(){
+      const now = new Date();
+      const dist = weddingDate - now;
+      if (isNaN(dist)) { countdownEl.textContent = "Date not set"; return; }
+
+      if (dist <= 0){
+        countdownEl.innerHTML = "💍 Wedding in progress!";
+        return;
+      }
+
+      const days = Math.floor(dist / (1000*60*60*24));
+      const hours = Math.floor((dist % (1000*60*60*24)) / (1000*60*60));
+      const minutes = Math.floor((dist % (1000*60*60)) / (1000*60));
+      const seconds = Math.floor((dist % (1000*60)) / 1000);
+
+      countdownEl.innerHTML = `⏳ ${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s left`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ---------- Language toggle (EN / TA) ----------
+    const btnEN = document.getElementById('lang-en');
+    const btnTA = document.getElementById('lang-ta');
+    const engText = document.getElementById('engText');
+    const tamText = document.getElementById('tamText');
+    const subtitle = document.getElementById('subtitleText');
+    const inviteTitle = document.getElementById('inviteTitle');
+
+    btnEN.addEventListener('click', () => {
+      btnEN.classList.add('active'); btnTA.classList.remove('active');
+      btnEN.setAttribute('aria-selected','true'); btnTA.setAttribute('aria-selected','false');
+      // animate
+      engText.style.opacity = 1; engText.style.transform = 'translateY(0)';
+      tamText.style.opacity = 0; tamText.style.transform = 'translateY(6px)';
+      subtitle.innerText = "Invite you to celebrate their wedding";
+      inviteTitle.innerText = "Sevan J. Kumaresh ♥ Selvi N. Nisha";
+    });
+
+    btnTA.addEventListener('click', () => {
+      btnTA.classList.add('active'); btnEN.classList.remove('active');
+      btnTA.setAttribute('aria-selected','true'); btnEN.setAttribute('aria-selected','false');
+      tamText.style.opacity = 1; tamText.style.transform = 'translateY(0)';
+      engText.style.opacity = 0; engText.style.transform = 'translateY(6px)';
+      subtitle.innerText = "அவர்களின் திருமணத்தை கொண்டாட உங்களை அழைக்கின்றனர்";
+      inviteTitle.innerText = "சேவன் ஜே. குமரேஷ் ♥ செல்வி என். நிஷா";
+    });
+
+    // ---------- Floating hearts generation ----------
+    const maxHearts = Math.min(18, Math.round(window.innerWidth/40));
+    for (let i=0;i<maxHearts;i++){
+      const h = document.createElement('div');
+      h.className = 'floating-heart';
+      const size = 10 + Math.random()*24;
+      h.style.width = `${size}px`; h.style.height = `${size}px`;
+      h.style.left = `${Math.random()*92}%`;
+      h.style.background = 'transparent';
+      h.style.zIndex = 0;
+      // random animation duration and delay
+      const dur = 8 + Math.random()*14;
+      const delay = Math.random()*8;
+      h.style.animation = `floatUp ${dur}s linear ${delay}s infinite`;
+      document.body.appendChild(h);
+    }
+
+    // ---------- Add to Calendar (generate ICS file link) ----------
+    const addCal = document.getElementById('addCal');
+    addCal.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Create a simple .ics and download
+      const start = new Date(weddingDate);
+      const end = new Date(weddingDate.getTime() + (90*60*1000)); // 1.5 hours
+      function toICSDate(d){
+        // Convert to UTC YYYYMMDDTHHMMSSZ
+        return new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+      }
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Wedding Invite//EN',
+        'BEGIN:VEVENT',
+        `UID:${Date.now()}@weddinginvite`,
+        `DTSTAMP:${toICSDate(new Date())}`,
+        `DTSTART:${toICSDate(start)}`,
+        `DTEND:${toICSDate(end)}`,
+        'SUMMARY:Wedding — Sevan J. Kumaresh & N. Nisha',
+        'LOCATION:Harsha Mahal, Pavithiramanikam, Thiruvarur',
+        'DESCRIPTION:Join us to celebrate the wedding. Muhurtham 6:00 AM - 7:30 AM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\\r\\n');
+
+      const blob = new Blob([ics], {type:'text/calendar'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'kumaresh-nisha-wedding.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // ---------- Share button (navigator.share fallback) ----------
+    const shareBtn = document.getElementById('shareBtn');
+    shareBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const shareData = {
+        title: 'Wedding Invitation — Sevan & Nisha',
+        text: 'Join us to celebrate the wedding of Sevan J. Kumaresh & N. Nisha on March 6, 2026. View the invitation.',
+        url: location.href
+      };
+      if (navigator.share) {
+        try { await navigator.share(shareData); }
+        catch(err){ alert('Share canceled or not available'); }
+      } else {
+        // fallback: copy to clipboard
+        try {
+          await navigator.clipboard.writeText(`${shareData.title}\\n${shareData.text}\\n${shareData.url}`);
+          alert('Invitation link copied to clipboard. Share it with your guests!');
+        } catch (err) {
+          prompt('Copy this link to share the invitation:', location.href);
+        }
+      }
+    });
+
+    // ---------- Accessibility: if image missing, show initials ----------
+    const img = document.getElementById('coupleImg');
+    img.addEventListener('error', () => {
+      const container = img.parentElement;
+      container.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg, #fff0f0, #fff);font-weight:700;color:var(--accent)">K ♥ N</div>';
+    });
+
+    // ---------- Optional: smooth entrance animation on load ----------
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.fade-in').forEach((el, idx) => {
+        el.style.animationDelay = (idx*80) + 'ms';
+      });
+    });
+
+  </script>
+</body>
+      </html>
