@@ -452,12 +452,7 @@
         <div class="pulse" style="transform:translate(-50%,-50%) rotate(45deg)"></div>
       </div>
 
-        <div class="translations" aria-hidden="false">
-          <div class="toggle" role="tablist" aria-label="Language selection">
-            <button id="lang-en" class="active" aria-selected="true" role="tab">EN</button>
-            <button id="lang-ta" aria-selected="false" role="tab">தமிழ்</button>
-          </div>
-        </div>
+
 
         <div class="pill" id="detailsCard" role="region" aria-live="polite" style="z-index:2">
 	      <aside class="info" aria-label="Additional information" style="z-index:2">
@@ -471,8 +466,7 @@
 	  <div class="names" style="z-index:2">
           <h1 id="inviteTitle">selvan <strong>J. Kumaresh, B.E</strong></h1></div>
           <p><strong> </strong></p>
-			  <p><strong> </strong></p>
-
+          <p><strong> </strong></p>
 
 	  <p><span style="color:var(--muted)">D/O Nallakumar (Late) & N. Malarvizhi</span></p>
 	  <div class="names" style="z-index:2">
@@ -503,12 +497,10 @@
 
 
         <!-- Animated translation text area -->
-        <div id="translationBox" style="margin-top:12px; text-align:center; min-height:84px; display:flex;align-items:center;justify-content:center;flex-direction:column;">
-          <div id="engText" style="opacity:1; transition:all 400ms ease">Join us in blessing the couple as they begin their new life together.</div>
-          <div id="tamText" style="opacity:0; transform:translateY(6px); transition:all 400ms ease; font-family: 'Noto Sans Tamil', 'Poppins', sans-serif; font-size:0.98rem;">
-            எங்கள் குடும்பத்தினருடன் இணைந்து இந்த ஜோடியை வாழ்த்துங்கள்.
-          </div>
-        </div>
+<div style="margin-top:12px; text-align:center;">
+  Join us in blessing the couple as they begin their new life together.
+</div>
+
 
       </aside>
     </section>
@@ -545,33 +537,7 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // ---------- Language toggle (EN / TA) ----------
-    const btnEN = document.getElementById('lang-en');
-    const btnTA = document.getElementById('lang-ta');
-    const engText = document.getElementById('engText');
-    const tamText = document.getElementById('tamText');
-    const subtitle = document.getElementById('subtitleText');
-    const inviteTitle = document.getElementById('inviteTitle');
-
-    btnEN.addEventListener('click', () => {
-      btnEN.classList.add('active'); btnTA.classList.remove('active');
-      btnEN.setAttribute('aria-selected','true'); btnTA.setAttribute('aria-selected','false');
-      // animate
-      engText.style.opacity = 1; engText.style.transform = 'translateY(0)';
-      tamText.style.opacity = 0; tamText.style.transform = 'translateY(6px)'; 
-      subtitle.innerText = "Warmly invite you to celebrate the union of their hearts";
-      inviteTitle.innerText = "Wedding ♥ Invitation";
-    });
-
-    btnTA.addEventListener('click', () => {
-      btnTA.classList.add('active'); btnEN.classList.remove('active');
-      btnTA.setAttribute('aria-selected','true'); btnEN.setAttribute('aria-selected','false');
-      tamText.style.opacity = 1; tamText.style.transform = 'translateY(0)';
-      engText.style.opacity = 0; engText.style.transform = 'translateY(6px)';
-      subtitle.innerText = "அவர்களின் திருமணத்தை கொண்டாட உங்களை அழைக்கின்றனர்";
-      inviteTitle.innerText = "செல்வன் J.குமரேஷ் ♥ செல்வி N.நிஷா";
-    });
-
+  
     // ---------- Floating hearts generation ----------
     const maxHearts = Math.min(18, Math.round(window.innerWidth/40));
     for (let i=0;i<maxHearts;i++){
