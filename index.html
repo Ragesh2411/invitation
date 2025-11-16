@@ -90,10 +90,11 @@
       animation:popIn 900ms cubic-bezier(.2,.9,.2,1) both;
     }
     .subtitle{
+      font-family:"Great Vibes",cursive;
       font-weight:600;
-      color:var(--muted);
+      color:var(--mute);
       margin-top:4px;
-      font-size:0.95rem;
+      font-size:1.8rem;
       opacity:0.95;
       transform: translateY(0);
       animation:fadeUp 900ms 120ms both;
@@ -239,7 +240,7 @@
     .heart-pulse{
       position:absolute;
       left:50%;
-      top:4%;
+      top:48%;
       transform:translateX(-50%);
       pointer-events:none;
     }
@@ -352,7 +353,7 @@
     text-align: center;
   }
   .text-block {
-    margin-left: 10px;
+    margin-left: 0;
   }
 
   .couple-photo {
@@ -438,15 +439,17 @@
 
   <div class="text-block">
     <div class="names" style="z-index:2">
-      <h1 id="inviteTitle">selvan J. Kumaresh ♥ selvi N. Nisha</h1>
+      <h1 id="inviteTitle">Wedding ♥ Invitation</h1>
     </div>
     <div class="subtitle" id="subtitleText">Warmly invite you to celebrate the union of their hearts</div>
   </div>
 </div>
 
+
+
       <!-- heart pulse decorative -->
      <div class="heart-pulse" aria-hidden="true">
-        <div class="pulse" style="transform:translate(-50%,-50%) rotate(30deg)"></div>
+        <div class="pulse" style="transform:translate(-50%,-50%) rotate(45deg)"></div>
       </div>
 
         <div class="translations" aria-hidden="false">
@@ -463,10 +466,16 @@
 
 
         </div>
-          <p><strong>Selvan J. Kumaresh, B.E</strong>  <span style="color:var(--muted)">S/O R. Jayakumar & J. Santhakumari</span></p>
-          <p><strong>Weds</strong></p>
+	
+	  <p><span style="color:var(--muted)">S/O R. Jayakumar & J. Santhakumari</span></p>
+	  <div class="names" style="z-index:2">
+          <h1 id="inviteTitle">selvan <strong>J. Kumaresh, B.E</strong></h1></div>
+          <p><strong> </strong></p>
 
-          <p><strong>Selvi N. Nisha, B.Tech</strong>  <span style="color:var(--muted)">D/O Nallakumar (Late) & N. Malarvizhi</span></p>
+
+	  <p><span style="color:var(--muted)">D/O Nallakumar (Late) & N. Malarvizhi</span></p>
+	  <div class="names" style="z-index:2">
+          <h1 id="inviteTitle">selvi <strong>N. Nisha, B.Tech</strong></h1></div>  
 
           <div class="meta" aria-hidden="false">
           
@@ -489,6 +498,7 @@
         <!-- small quote with animation -->
         <p class="suggest fade-in" id="quote">“Two hearts, one promise — forever begins here.”</p>
       </div>
+
 
 
         <!-- Animated translation text area -->
@@ -549,7 +559,7 @@
       engText.style.opacity = 1; engText.style.transform = 'translateY(0)';
       tamText.style.opacity = 0; tamText.style.transform = 'translateY(6px)'; 
       subtitle.innerText = "Warmly invite you to celebrate the union of their hearts";
-      inviteTitle.innerText = "selvan J. Kumaresh ♥ selvi N. Nisha";
+      inviteTitle.innerText = "Wedding ♥ Invitation";
     });
 
     btnTA.addEventListener('click', () => {
@@ -578,65 +588,7 @@
       document.body.appendChild(h);
     }
 
-    // ---------- Add to Calendar (generate ICS file link) ----------
-    const addCal = document.getElementById('addCal');
-    addCal.addEventListener('click', (e) => {
-      e.preventDefault();
-      // Create a simple .ics and download
-      const start = new Date(weddingDate);
-      const end = new Date(weddingDate.getTime() + (90*60*1000)); // 1.5 hours
-      function toICSDate(d){
-        // Convert to UTC YYYYMMDDTHHMMSSZ
-        return new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-      }
-      const ics = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//Wedding Invite//EN',
-        'BEGIN:VEVENT',
-        `UID:${Date.now()}@weddinginvite`,
-        `DTSTAMP:${toICSDate(new Date())}`,
-        `DTSTART:${toICSDate(start)}`,
-        `DTEND:${toICSDate(end)}`,
-        'SUMMARY:Wedding — Sevan J. Kumaresh & N. Nisha',
-        'LOCATION:Harsha Mahal, Pavithiramanikam, Thiruvarur',
-        'DESCRIPTION:Join us to celebrate the wedding. Muhurtham 6:00 AM - 7:30 AM',
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\\r\\n');
 
-      const blob = new Blob([ics], {type:'text/calendar'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'kumaresh-nisha-wedding.ics';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    });
-
-    // ---------- Share button (navigator.share fallback) ----------
-    const shareBtn = document.getElementById('shareBtn');
-    shareBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const shareData = {
-        title: 'Wedding Invitation — Sevan & Nisha',
-        text: 'Join us to celebrate the wedding of Sevan J. Kumaresh & N. Nisha on March 6, 2026. View the invitation.',
-        url: location.href
-      };
-      if (navigator.share) {
-        try { await navigator.share(shareData); }
-        catch(err){ alert('Share canceled or not available'); }
-      } else {
-        // fallback: copy to clipboard
-        try {
-          await navigator.clipboard.writeText(`${shareData.title}\\n${shareData.text}\\n${shareData.url}`);
-          alert('Invitation link copied to clipboard. Share it with your guests!');
-        } catch (err) {
-          prompt('Copy this link to share the invitation:', location.href);
-        }
-      }
-    });
 
     // ---------- Accessibility: if image missing, show initials ----------
     const img = document.getElementById('coupleImg');
