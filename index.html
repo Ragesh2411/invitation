@@ -2,20 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="description" content="Wedding Invitation for J. Kumaresh & N. Nisha - March 6, 2026 at Harsha Mahal, Thiruvarur" />
   <title>Wedding Invitation — J. Kumaresh & N. Nisha</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts with optimized loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --accent:#b91c1c;
+      --accent-light:#d32f2f;
       --accent-2:#ff6b95;
       --muted:#6b6b6b;
-      --card-bg: rgba(255,255,255,0.9);
-      --glass: rgba(255,255,255,0.6);
+      --muted-light:#9e9e9e;
+      --card-bg: #ffffff;
+      --glass: rgba(255,255,255,0.85);
       --maxWidth: 980px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
     }
 
     /* Reset + base */
@@ -23,22 +33,26 @@
     	html, body {
   	margin: 0;
   	padding: 0;
-  	overflow-x: hidden;
+  	overflow: hidden;
   	scroll-behavior: smooth;
+  	height: 100vh;
+  	width: 100vw;
 	}
     body{
       margin:0;
       font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
       -webkit-font-smoothing:antialiased;
-      background: radial-gradient(1200px 600px at 10% 10%, #fff0f2 0%, transparent 10%),
-                  radial-gradient(900px 400px at 90% 90%, #fff8f4 0%, transparent 10%),
-                  linear-gradient(180deg,#fff 0%, #fff6f8 100%);
+      background: #fafafa;
       color:#222;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:28px;
-      overflow-x:hidden;
+      padding:12px;
+      overflow:hidden;
+      height:100vh;
+      width:100vw;
+      position:relative;
+      z-index:0;
     }
 
     /* Container */
@@ -46,56 +60,89 @@
       width:100%;
       max-width:var(--maxWidth);
       margin:0 auto;
-      padding:18px;
+      padding:8px;
+      max-height:100vh;
+      overflow:hidden;
+      position:relative;
+      z-index:1;
     }
     .invite-card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--card-bg));
+      background: var(--card-bg);
       border-radius:20px;
-      box-shadow: 0 8px 30px rgba(16,24,40,0.12);
-      padding:18px;
+      box-shadow: var(--shadow-lg);
+      padding:16px;
       display:grid;
       grid-template-columns: 1fr;
-      gap:16px;
+      gap:12px;
       align-items:center;
       position:relative;
       overflow:hidden;
-      border: 1px solid rgba(185,28,28,0.06);
+      border: 1px solid rgba(185,28,28,0.08);
+      max-height:calc(100vh - 24px);
+      box-sizing:border-box;
+      z-index:1;
+      animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      will-change: transform, opacity;
+    }
+    .invite-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.4;
+      border-radius: 0 0 2px 2px;
+    }
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* Top hero */
     .hero{
       display:flex;
-      gap:14px;
+      gap:8px;
       align-items:center;
       justify-content:center;
       flex-direction:column;
-      padding-top:10px;
+      padding-top:0;
     }
     .names{
       display:flex;
-      gap:10px;
+      gap:8px;
       align-items:center;
       justify-content:center;
       flex-wrap:wrap;
     }
     .names h1{
       font-family:"Great Vibes",cursive;
-      font-size:2.6rem;
+      font-size:2.2rem;
       color:var(--accent);
       margin:0;
-      line-height:1;
-      letter-spacing:0.6px;
-      text-shadow: 0 2px 0 rgba(0,0,0,0.02);
+      line-height:1.1;
+      letter-spacing:0.5px;
+      font-weight:400;
       transform-origin:center;
       animation:popIn 900ms cubic-bezier(.2,.9,.2,1) both;
     }
     .subtitle{
-      font-family:"Great Vibes",cursive;
-      font-weight:600;
-      color:var(--mute);
+      font-family:"Poppins",sans-serif;
+      font-weight:400;
+      color:var(--muted);
       margin-top:4px;
-      font-size:1.8rem;
-      opacity:0.95;
+      font-size:0.85rem;
+      line-height:1.4;
+      max-width:600px;
+      text-align:center;
       transform: translateY(0);
       animation:fadeUp 900ms 120ms both;
     }
@@ -103,25 +150,44 @@
     /* Couple photo */
     .photo-row{
       display:flex;
-      gap:14px;
+      gap:12px;
       align-items:center;
       justify-content:center;
       flex-direction:row;
+      margin-bottom:4px;
     }
     .couple-photo{
-      width:132px;
-      height:132px;
+      width:100px;
+      height:100px;
       border-radius:50%;
       overflow:hidden;
-      border:6px solid rgba(255,255,255,0.85);
-      box-shadow: 0 10px 30px rgba(185,28,28,0.08);
-      background:linear-gradient(180deg,#fff,#fff0f0);
+      border:3px solid var(--accent);
+      box-shadow: var(--shadow-md), 0 0 0 0 rgba(185,28,28,0.2);
+      background:#fff;
       display:inline-block;
       flex-shrink:0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+    .couple-photo::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .couple-photo:hover{
+      transform:scale(1.08);
+      box-shadow: var(--shadow-lg), 0 0 0 4px rgba(185,28,28,0.1);
+    }
+    .couple-photo:hover::before {
+      opacity: 0.3;
     }
     .couple-photo img{
       width:100%;
-      height:140%;
+      height:100%;
       object-fit:cover;
       display:block;
     }
@@ -129,57 +195,100 @@
     /* Info card */
     .info{
       display:flex;
-      gap:12px;
+      gap:8px;
       align-items:center;
       justify-content:center;
       flex-direction:column;
-      padding:12px;
+      padding:8px;
     }
     .pill{
-      background: linear-gradient(90deg, rgba(185,28,28,0.06), rgba(255,107,149,0.06));
+      background: rgba(185,28,28,0.04);
       border-radius:12px;
-      padding:12px 14px;
+      padding:12px 16px;
       display:flex;
-      gap:10px;
+      gap:8px;
       align-items:center;
       justify-content:center;
       flex-direction:column;
-      min-width:240px;
+      min-width:280px;
+      border:1px solid rgba(185,28,28,0.1);
     }
-    .pill p{margin:6px 0; font-size:0.95rem; color:#333}
+    .pill p{
+      margin:4px 0; 
+      font-size:0.85rem; 
+      color:#333;
+      line-height:1.4;
+    }
+    .pill .names h1{
+      font-size:1.6rem;
+      margin:2px 0;
+    }
     .meta{
       display:flex;
-      gap:10px;
+      gap:6px;
       align-items:center;
       justify-content:center;
       flex-wrap:wrap;
       margin-top:6px;
     }
     .meta .chip{
-      background:rgba(0,0,0,0.03);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:0.86rem;
+      background:#f5f5f5;
+      padding:6px 12px;
+      border-radius:6px;
+      font-size:0.8rem;
       color:#333;
-      font-weight:600;
+      font-weight:500;
+      border:1px solid rgba(0,0,0,0.05);
+      box-shadow:var(--shadow-sm);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .meta .chip:hover{
+      background:#fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-color: rgba(185,28,28,0.2);
+    }
+    .meta .chip:active{
+      transform: translateY(0);
     }
 
     /* Countdown */
     .countdown{
-      font-weight:700;
+      font-weight:600;
       color:var(--accent);
-      font-size:1.05rem;
+      font-size:0.95rem;
       margin-top:8px;
       display:flex;
-      gap:8px;
+      gap:6px;
       align-items:center;
+      justify-content:center;
+      padding:8px;
+      background:rgba(185,28,28,0.05);
+      border-radius:8px;
+      animation: countdownPulse 2s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+    .countdown strong {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05em;
+    }
+    @keyframes countdownPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(185,28,28,0.2);
+      }
+      50% {
+        box-shadow: 0 0 0 4px rgba(185,28,28,0);
+      }
     }
     .time-block{display:flex;gap:6px;align-items:center}
 
     /* Buttons */
     .actions{
       display:flex;
-      gap:10px;
+      gap:8px;
       justify-content:center;
       align-items:center;
       flex-wrap:wrap;
@@ -189,21 +298,31 @@
       background:var(--accent);
       color:white;
       border:none;
-      padding:10px 14px;
-      border-radius:10px;
-      font-weight:700;
-      font-size:0.95rem;
+      padding:8px 16px;
+      border-radius:8px;
+      font-weight:600;
+      font-size:0.85rem;
       text-decoration:none;
       display:inline-flex;
-      gap:8px;
+      gap:6px;
       align-items:center;
-      box-shadow: 0 6px 16px rgba(185,28,28,0.12);
+      box-shadow: var(--shadow-md);
+      transition:all 0.3s ease;
+      cursor:pointer;
+    }
+    .btn:hover{
+      background:var(--accent-light);
+      transform:translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
     .btn.secondary{
       background:transparent;
       color:var(--accent);
-      border:1px solid rgba(185,28,28,0.12);
+      border:2px solid var(--accent);
       font-weight:600;
+    }
+    .btn.secondary:hover{
+      background:rgba(185,28,28,0.05);
     }
 
     /* Translation toggle */
@@ -217,10 +336,10 @@
     .toggle{
       display:inline-flex;
       gap:6px;
-      background:var(--glass);
+      background:#f5f5f5;
       border-radius:999px;
       padding:6px;
-      border:1px solid rgba(0,0,0,0.03);
+      border:1px solid rgba(0,0,0,0.08);
     }
     .toggle button{
       background:transparent;
@@ -228,22 +347,26 @@
       padding:8px 12px;
       border-radius:999px;
       cursor:pointer;
-      font-weight:700;
+      font-weight:600;
+      transition:all 0.2s ease;
     }
     .toggle button.active{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      background:var(--accent);
       color:white;
-      box-shadow: 0 6px 20px rgba(185,28,28,0.12);
+      box-shadow: var(--shadow-sm);
     }
 
     /* Heart animations - center pulse */
 .two-heart-wrapper {
   position: relative;
-  width: 120px;  /* adjust based on spacing between names */
-  height: 50px;
+  width: auto;
+  min-width: 160px;
+  height: 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 8px;
+  margin: 8px auto;
 }
 
 /* Common pulse wrapper */
@@ -254,18 +377,19 @@
   pointer-events:none;
 }
 
-/* Heart shape */
-.pulse {
-  width:22px;
-  height:22px;
-  transform: rotate(45deg);
-  background: linear-gradient(180deg,var(--accent),var(--accent-2));
-  position: relative;
-  border-radius: 3px;
-  opacity:0.95;
-  box-shadow:0 8px 25px rgba(185,28,28,0.18);
-  animation: beat 1.4s infinite ease-in-out;
-}
+    /* Heart shape */
+    .pulse {
+      width:22px;
+      height:22px;
+      transform: rotate(45deg);
+      background: var(--accent);
+      position: relative;
+      border-radius: 2px 2px 50% 2px;
+      opacity:0.98;
+      box-shadow:0 4px 12px rgba(185,28,28,0.3);
+      animation: beat 1.4s infinite ease-in-out;
+      filter: drop-shadow(0 2px 4px rgba(185,28,28,0.4));
+    }
 
 /* Two separate heart positions */
 .heart-1 {
@@ -291,40 +415,124 @@
 .pulse::before { top:-11px; left:0; }
 .pulse::after  { top:0; left:-11px; }
 
-/* Beat animation */
+/* Beat animation - Enhanced */
 @keyframes beat {
-  0%   { transform: rotate(45deg) scale(1); }
-  50%  { transform: rotate(45deg) scale(1.25); }
-  100% { transform: rotate(45deg) scale(1); }
+  0%   { 
+    transform: rotate(45deg) scale(1);
+    filter: drop-shadow(0 2px 4px rgba(185,28,28,0.4));
+    opacity: 0.98;
+  }
+  25% {
+    transform: rotate(45deg) scale(1.08);
+    filter: drop-shadow(0 2px 5px rgba(185,28,28,0.45));
+    opacity: 1;
+  }
+  50%  { 
+    transform: rotate(45deg) scale(1.18);
+    filter: drop-shadow(0 3px 6px rgba(185,28,28,0.5));
+    opacity: 1;
+  }
+  75% {
+    transform: rotate(45deg) scale(1.08);
+    filter: drop-shadow(0 2px 5px rgba(185,28,28,0.45));
+    opacity: 1;
+  }
+  100% { 
+    transform: rotate(45deg) scale(1);
+    filter: drop-shadow(0 2px 4px rgba(185,28,28,0.4));
+    opacity: 0.98;
+  }
 }
 
-
-    @keyframes beat{
-      0%{transform:translate(-50%,-50%) rotate(45deg) scale(1)}
-      30%{transform:translate(-50%,-50%) rotate(45deg) scale(1.18)}
-      60%{transform:translate(-50%,-50%) rotate(45deg) scale(0.98)}
-      100%{transform:translate(-50%,-50%) rotate(45deg) scale(1)}
-    }
-
-    /* Floating hearts background (reduced for performance on mobile) */
+    /* Floating hearts background - Enhanced with better shape */
     .floating-heart{
       position:fixed;
-      bottom:-10vh;
-      width:18px;height:18px;
+      bottom:-20px;
       transform:rotate(45deg);
       pointer-events:none;
-      opacity:0.9;
-      z-index:0;
+      opacity:0.85;
+      z-index:9999;
+      background:var(--heart-color, var(--accent));
+      border-radius:2px 2px 50% 2px;
+      will-change: transform, opacity, filter;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 2px 4px rgba(185,28,28,0.3));
+      transition: filter 0.3s ease;
     }
     .floating-heart::before,.floating-heart::after{
-      content:""; position:absolute; width:18px;height:18px;border-radius:50%; background:linear-gradient(180deg,var(--accent),var(--accent-2));
+      content:""; 
+      position:absolute; 
+      width:100%;
+      height:100%;
+      border-radius:50%; 
+      background:var(--heart-color, var(--accent));
     }
-    .floating-heart::before{top:-9px; left:0}
-    .floating-heart::after{left:-9px; top:0}
+    .floating-heart::before{
+      top:calc(-50%);
+      left:0;
+    }
+    .floating-heart::after{
+      left:calc(-50%);
+      top:0;
+    }
     @keyframes floatUp {
-      from{transform:translateY(0) rotate(45deg);opacity:0.9}
-      to{transform:translateY(-120vh) rotate(45deg);opacity:0}
+      0% {
+        transform: translateY(0) translateX(0) rotate(45deg) scale(0.4);
+        opacity: 0;
+        filter: drop-shadow(0 1px 2px rgba(185,28,28,0.2));
+      }
+      2% {
+        opacity: 0.95;
+        filter: drop-shadow(0 2px 4px rgba(185,28,28,0.3));
+      }
+      10% {
+        transform: translateY(-10vh) translateX(8px) rotate(47deg) scale(0.7);
+        opacity: 0.9;
+      }
+      20% {
+        transform: translateY(-20vh) translateX(-6px) rotate(43deg) scale(0.85);
+        opacity: 0.88;
+      }
+      35% {
+        transform: translateY(-35vh) translateX(14px) rotate(48deg) scale(0.95);
+        opacity: 0.82;
+        filter: drop-shadow(0 2px 5px rgba(185,28,28,0.35));
+      }
+      50% {
+        transform: translateY(-50vh) translateX(-12px) rotate(44deg) scale(1.05);
+        opacity: 0.75;
+        filter: drop-shadow(0 3px 6px rgba(185,28,28,0.4));
+      }
+      65% {
+        transform: translateY(-65vh) translateX(16px) rotate(46deg) scale(1);
+        opacity: 0.6;
+      }
+      80% {
+        transform: translateY(-80vh) translateX(-18px) rotate(43deg) scale(0.9);
+        opacity: 0.35;
+        filter: drop-shadow(0 2px 4px rgba(185,28,28,0.3));
+      }
+      95% {
+        transform: translateY(-95vh) translateX(22px) rotate(45deg) scale(0.75);
+        opacity: 0.15;
+        filter: drop-shadow(0 1px 3px rgba(185,28,28,0.2));
+      }
+      100% {
+        transform: translateY(-100vh) translateX(-20px) rotate(45deg) scale(0.6);
+        opacity: 0;
+        filter: drop-shadow(0 1px 2px rgba(185,28,28,0.1));
+      }
     }
+    
+    /* Add subtle rotation animation for more dynamic hearts */
+    @keyframes heartRotate {
+      0% { transform: rotate(45deg); }
+      25% { transform: rotate(48deg); }
+      50% { transform: rotate(42deg); }
+      75% { transform: rotate(47deg); }
+      100% { transform: rotate(45deg); }
+    }
+    
 
     /* Animations */
     @keyframes popIn{ from{transform:scale(.92);opacity:0} to{transform:scale(1);opacity:1}}
@@ -333,137 +541,336 @@
 
     /* Suggestion / footer */
     .suggest{
-      font-size:0.86rem;
+      font-size:0.85rem;
       color:var(--muted);
       text-align:center;
-      margin-top:10px;
-      padding:6px 10px;
+      margin-top:8px;
+      padding:8px;
+      font-style:italic;
+      line-height:1.4;
     }
 .text-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
 }
 
 @media (min-width: 769px) {
   .photo-row {
-    justify-content: flex-start;  /* photo on left */
+    justify-content: flex-start;
     text-align: left;
   }
   .text-block {
     text-align: left;
-    margin-left: 16px;
+    margin-left: 20px;
   }
 }
 
 
+/* Mobile optimizations */
 @media (max-width:480px) {
+  /* Reduce animations for better performance */
+  * {
+    animation-duration: 0.6s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  .floating-heart {
+    animation-duration: 6s !important;
+  }
+  
   body {
-    padding: 12px;
-    background: linear-gradient(180deg,#fff,#fff6f8);
+    padding: 6px;
+    background: #fafafa;
+    overflow: hidden;
+    height: 100vh;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   .wrap {
-    padding: 8px;
+    padding: 2px;
+    max-height: 100vh;
   }
 
   .invite-card {
-    padding: 12px;
-    gap: 10px;
-    border-radius: 16px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    padding: 10px;
+    gap: 8px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-md);
+    max-height: calc(100vh - 12px);
+    animation: cardEntranceMobile 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    will-change: auto;
+  }
+  
+  @keyframes cardEntranceMobile {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .invite-card::before {
+    width: 40px;
+    height: 2px;
   }
 
   .hero {
-    padding-top: 10px; /* ✅ reduced so names are visible */
+    padding-top: 0;
+    gap: 3px;
   }
 
   .names h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     text-align: center;
     line-height: 1.1;
+    letter-spacing: 0.3px;
   }
 
   .subtitle {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     text-align: center;
+    padding: 0 6px;
+    margin-top: 2px;
+    line-height: 1.3;
   }
 
   .photo-row {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 6px;
+    margin-bottom: 2px;
   }
   .text-block {
     margin-left: 0;
   }
 
   .couple-photo {
-    margin-bottom: 12px;
+    width: 75px;
+    height: 75px;
+    margin-bottom: 3px;
+    border-width: 2px;
   }
-
+  
+  .couple-photo:hover {
+    transform: scale(1.05);
+  }
 
   .pill {
     width: 100%;
     min-width: unset;
-    padding: 10px;
+    padding: 10px 8px;
+    gap: 5px;
+    border-radius: 10px;
   }
 
   .pill p {
-    font-size: 0.88rem;
+    font-size: 0.75rem;
     line-height: 1.3;
     text-align: center;
+    margin: 2px 0;
   }
 
   .meta {
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
+    width: 100%;
+    margin-top: 5px;
   }
 
   .meta .chip {
     width: 100%;
     text-align: center;
-    font-size: 0.82rem;
+    font-size: 0.7rem;
+    padding: 10px 12px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: rgba(185,28,28,0.1);
+  }
+  
+  .meta .chip:active {
+    transform: scale(0.98);
+    background: rgba(185,28,28,0.08);
   }
 
   .countdown {
-    flex-direction: column;
-    font-size: 0.9rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
     text-align: center;
+    padding: 10px 8px;
+    margin-top: 6px;
+    line-height: 1.5;
+    animation: none;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    background: rgba(185,28,28,0.06);
+    border: 1px solid rgba(185,28,28,0.12);
+    border-radius: 10px;
+  }
+  
+  .countdown strong {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--accent);
+    display: inline-block;
+    min-width: 32px;
+    text-align: center;
+    background: rgba(185,28,28,0.12);
+    padding: 4px 6px;
+    border-radius: 6px;
+    margin: 0 1px;
+    line-height: 1.2;
+  }
+  
+  /* Better spacing between time units */
+  .countdown span {
+    display: inline-block;
+    margin: 0 2px;
+    color: var(--muted);
+    font-size: 0.9em;
   }
 
   .actions {
     flex-direction: column;
     gap: 8px;
-    margin-top: 10px;
+    margin-top: 8px;
+    width: 100%;
   }
 
   .btn {
     width: 100%;
     justify-content: center;
-    padding: 10px;
-    font-size: 0.9rem;
+    padding: 12px;
+    font-size: 0.85rem;
+    min-height: 44px;
+    -webkit-tap-highlight-color: rgba(185,28,28,0.2);
+  }
+  
+  .btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
   }
 
   .toggle button {
-    padding: 7px 10px;
-    font-size: 0.85rem;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-height: 36px;
   }
 
   .info {
-    gap: 10px;
-    padding: 6px;
+    gap: 5px;
+    padding: 3px;
   }
 
   .suggest {
-    font-size: 0.8rem;
-    margin-top: 8px;
-    padding: 4px;
+    font-size: 0.7rem;
+    margin-top: 5px;
+    padding: 8px 6px;
+    line-height: 1.3;
+  }
+  
+  .pill .names h1 {
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+  
+  .two-heart-wrapper {
+    min-width: 140px;
+    height: 35px;
+    margin: 5px auto;
+    gap: 6px;
+  }
+  
+  .heart-pulse {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .pulse {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .pulse::before,
+  .pulse::after {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .pulse::before {
+    top: -9px;
+  }
+  
+  .pulse::after {
+    left: -9px;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .invite-card {
+    padding: 14px;
+    gap: 10px;
+  }
+  
+  .names h1 {
+    font-size: 2rem;
+  }
+  
+  .couple-photo {
+    width: 90px;
+    height: 90px;
   }
 }
 
     /* accessibility focus */
     a:focus, button:focus { outline:3px solid rgba(185,28,28,0.15); outline-offset:3px; border-radius:8px; }
+    
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .floating-heart {
+        display: none;
+      }
+    }
+    
+    /* Better touch targets for mobile */
+    @media (hover: none) and (pointer: coarse) {
+      .btn,
+      .chip,
+      .toggle button {
+        -webkit-tap-highlight-color: rgba(185,28,28,0.15);
+      }
+      
+      .couple-photo:hover {
+        transform: none;
+      }
+      
+      .meta .chip:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -472,15 +879,15 @@
 
 
       <!-- LEFT: hero / details -->
-      <div class="hero" style="z-index:2">
+      <div class="hero">
 <div class="photo-row fade-in" aria-hidden="false">
-  <div class="couple-photo" aria-hidden="true" margin-top:12px>
-    <img src="kumareshnisha1.jpg" alt="J. Kumaresh & N. Nisha" id="coupleImg" />
+  <div class="couple-photo" aria-hidden="true">
+    <img src="kumareshnisha1.jpg" alt="J. Kumaresh & N. Nisha" id="coupleImg" loading="eager" decoding="async" />
   </div>
 
 
   <div class="text-block">
-    <div class="names" style="z-index:2">
+    <div class="names">
       <h1 id="inviteTitle">Wedding ♥ Invitation</h1>
     </div>
     <div class="subtitle" id="subtitleText">Request your gracious presence with family and friends on the auspicious occasion of the union of two hearts</div>
@@ -493,23 +900,25 @@
 
 
 
-        <div class="pill" id="detailsCard" role="region" aria-live="polite" style="z-index:2">
-	      <aside class="info" aria-label="Additional information" style="z-index:2">
+        <div class="pill" id="detailsCard" role="region" aria-live="polite">
+	      <aside class="info" aria-label="Additional information">
 
 	
-	  <p><span style="color:var(--muted)">S/O R. Jayakumar & J. Santhakumari</span></p>
-	  <div class="names" style="z-index:2">
-          <h1 id="inviteTitle">selvan <strong>J. Kumaresh, B.E</strong></h1></div>
+	  <p style="color:var(--muted); font-size:0.8rem; margin-bottom:4px;">S/O R. Jayakumar & J. Santhakumari</p>
+	  <div class="names" style="margin-bottom:6px;">
+          <h1 style="font-size:1.6rem;">selvan <strong>J. Kumaresh, B.E</strong></h1>
+      </div>
        
-			    <div class="two-heart-wrapper">
-    <div class="heart-pulse heart-1"><div class="pulse"></div></div>
-<p><span style="color:var(--muted)">with</p>
-          
-    <div class="heart-pulse heart-2"><div class="pulse"></div></div>
-  </div>
-	  <p><span style="color:var(--muted)">D/O Nallakumar (Late) & N. Malarvizhi</span></p>
-	  <div class="names" style="z-index:2">
-          <h1 id="inviteTitle">selvi <strong>N. Nisha, B.Tech</strong></h1></div>  
+      <div class="two-heart-wrapper" style="margin:6px 0;">
+        <div class="heart-pulse heart-1"><div class="pulse"></div></div>
+        <p style="color:var(--muted); margin:0 6px; font-size:0.85rem;">with</p>
+        <div class="heart-pulse heart-2"><div class="pulse"></div></div>
+      </div>
+	  
+	  <p style="color:var(--muted); font-size:0.8rem; margin-top:6px; margin-bottom:4px;">D/O Nallakumar (Late) & N. Malarvizhi</p>
+	  <div class="names">
+          <h1 style="font-size:1.6rem;">selvi <strong>N. Nisha, B.Tech</strong></h1>
+      </div>  
 
           <div class="meta" aria-hidden="false">
           
@@ -536,7 +945,7 @@
 
 
         <!-- Animated translation text area -->
-<div style="margin-top:12px; text-align:center;">
+<div style="margin-top:8px; text-align:center; color:var(--muted); font-size:0.85rem; line-height:1.4; padding:0 12px;">
   Join us in blessing the couple as they begin their new life together.
 </div>
 
@@ -553,10 +962,14 @@
 
     // ---------- Countdown ----------
     const countdownEl = document.getElementById('countdown');
+    if (!countdownEl) {
+      console.warn('Countdown element not found');
+    }
 
     function pad(n){ return n.toString().padStart(2,'0'); }
 
     function updateCountdown(){
+      if (!countdownEl) return;
       const now = new Date();
       const dist = weddingDate - now;
       if (isNaN(dist)) { countdownEl.textContent = "Date not set"; return; }
@@ -571,37 +984,140 @@
       const minutes = Math.floor((dist % (1000*60*60)) / (1000*60));
       const seconds = Math.floor((dist % (1000*60)) / 1000);
 
-      countdownEl.innerHTML = `⏳ ${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s left`;
+      // Format countdown with better spacing
+      const timeParts = [];
+      if (days > 0) timeParts.push(`<strong>${days}</strong><span>d</span>`);
+      if (hours > 0 || days > 0) timeParts.push(`<strong>${pad(hours)}</strong><span>h</span>`);
+      timeParts.push(`<strong>${pad(minutes)}</strong><span>m</span>`);
+      timeParts.push(`<strong>${pad(seconds)}</strong><span>s</span>`);
+      
+      const isMobileDevice = window.innerWidth <= 480;
+      if (isMobileDevice) {
+        countdownEl.innerHTML = `⏳ ${timeParts.join(' ')}`;
+      } else {
+        countdownEl.innerHTML = `⏳ ${timeParts.join(' ')} left`;
+      }
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
   
-    // ---------- Floating hearts generation ----------
-    const maxHearts = Math.min(18, Math.round(window.innerWidth/40));
-    for (let i=0;i<maxHearts;i++){
+    // ---------- Floating hearts generation (optimized for mobile) ----------
+    const isMobile = window.innerWidth <= 480;
+    const isTablet = window.innerWidth > 480 && window.innerWidth <= 768;
+    
+    // Reduce hearts on mobile for better performance
+    let maxHearts;
+    if (isMobile) {
+      maxHearts = Math.min(8, Math.round(window.innerWidth/60));
+    } else if (isTablet) {
+      maxHearts = Math.min(10, Math.round(window.innerWidth/50));
+    } else {
+      maxHearts = Math.min(15, Math.round(window.innerWidth/45));
+    }
+    
+    const heartColors = [
+      '#b91c1c', // Deep red
+      '#d32f2f', // Bright red
+      '#ff6b95', // Pink
+      '#c2185b', // Deep pink
+      '#e91e63', // Rose
+      '#f06292', // Light pink
+      '#ad1457'  // Dark rose
+    ];
+    
+    // Helper function to convert hex to RGB
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : { r: 185, g: 28, b: 28 };
+    }
+    
+    // Use requestAnimationFrame for better performance
+    function createHeart(index) {
+      if (index >= maxHearts) return;
+      
       const h = document.createElement('div');
       h.className = 'floating-heart';
-      const size = 10 + Math.random()*24;
-      h.style.width = `${size}px`; h.style.height = `${size}px`;
-      h.style.left = `${Math.random()*92}%`;
-      h.style.background = 'transparent';
-      h.style.zIndex = 0;
-      // random animation duration and delay
-      const dur = 8 + Math.random()*14;
-      const delay = Math.random()*8;
-      h.style.animation = `floatUp ${dur}s linear ${delay}s infinite`;
+      
+      // Smaller sizes on mobile with more variety
+      const baseSize = isMobile ? 10 : (isTablet ? 12 : 14);
+      const size = baseSize + Math.random() * (isMobile ? 12 : 16);
+      const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+      
+      // Varied opacity for depth
+      const opacity = 0.7 + Math.random() * 0.25;
+      
+      h.style.width = `${size}px`; 
+      h.style.height = `${size}px`;
+      h.style.left = `${5 + Math.random()*85}%`; // Better distribution, avoid edges
+      h.style.background = color;
+      h.style.opacity = opacity;
+      h.style.setProperty('--heart-color', color);
+      h.style.setProperty('--heart-size', `${size}px`);
+      
+      // Add data attribute for potential future enhancements
+      h.setAttribute('data-heart-size', size);
+      h.setAttribute('data-heart-color', color);
+      
+      // More varied animation speeds with different patterns
+      const animationType = Math.random();
+      let dur, delay, animationName;
+      
+      if (animationType < 0.7) {
+        // Standard float (70% of hearts)
+        dur = isMobile ? (8 + Math.random()*10) : (10 + Math.random()*14);
+        delay = Math.random() * (isMobile ? 5 : 7);
+        animationName = 'floatUp';
+      } else if (animationType < 0.9) {
+        // Slower, more graceful float (20% of hearts)
+        dur = isMobile ? (12 + Math.random()*8) : (15 + Math.random()*10);
+        delay = Math.random() * (isMobile ? 3 : 5);
+        animationName = 'floatUp';
+      } else {
+        // Fast, energetic float (10% of hearts)
+        dur = isMobile ? (5 + Math.random()*6) : (7 + Math.random()*8);
+        delay = Math.random() * (isMobile ? 2 : 4);
+        animationName = 'floatUp';
+      }
+      
+      // Drop shadow based on size and color (no glow)
+      const shadowIntensity = size / 20;
+      const shadowOpacity = 0.25 + shadowIntensity * 0.15;
+      const colorRGB = hexToRgb(color);
+      h.style.filter = `drop-shadow(0 ${2 * shadowIntensity}px ${4 * shadowIntensity}px rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},${shadowOpacity}))`;
+      
+      // Add slight random rotation offset for more natural movement
+      const rotationOffset = (Math.random() - 0.5) * 6;
+      h.style.setProperty('--rotation-offset', `${rotationOffset}deg`);
+      
+      h.style.animation = `${animationName} ${dur}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s infinite`;
       document.body.appendChild(h);
+      
+      // Create next heart with slight delay for smoother performance
+      if (index < maxHearts - 1) {
+        requestAnimationFrame(() => createHeart(index + 1));
+      }
     }
+    
+    // Start creating hearts
+    createHeart(0);
 
 
 
     // ---------- Accessibility: if image missing, show initials ----------
     const img = document.getElementById('coupleImg');
-    img.addEventListener('error', () => {
-      const container = img.parentElement;
-      container.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg, #fff0f0, #fff);font-weight:700;color:var(--accent)">K ♥ N</div>';
-    });
+    if (img) {
+      img.addEventListener('error', () => {
+        const container = img.parentElement;
+        if (container) {
+          container.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#fff;font-weight:700;color:var(--accent);font-size:2rem">K ♥ N</div>';
+        }
+      });
+    }
 
     // ---------- Optional: smooth entrance animation on load ----------
     window.addEventListener('load', () => {
@@ -609,6 +1125,57 @@
         el.style.animationDelay = (idx*80) + 'ms';
       });
     });
+
+    // ---------- Click to copy functionality ----------
+    const chips = document.querySelectorAll('.chip');
+    if (chips.length > 0) {
+      chips.forEach(chip => {
+        chip.addEventListener('click', function() {
+          const text = this.textContent.replace(/[📅⏰📍]/g, '').trim();
+          const originalText = this.textContent;
+          
+          // Try modern clipboard API first
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+              this.textContent = '✓ Copied!';
+              this.style.background = 'rgba(185,28,28,0.1)';
+              setTimeout(() => {
+                this.textContent = originalText;
+                this.style.background = '';
+              }, 1500);
+            }).catch(() => {
+              // Fallback to execCommand
+              copyFallback(text, this, originalText);
+            });
+          } else {
+            // Fallback for browsers that don't support clipboard API
+            copyFallback(text, this, originalText);
+          }
+        });
+      });
+      
+      // Fallback copy function
+      function copyFallback(text, element, originalText) {
+        try {
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          textArea.style.position = 'fixed';
+          textArea.style.opacity = '0';
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          element.textContent = '✓ Copied!';
+          element.style.background = 'rgba(185,28,28,0.1)';
+          setTimeout(() => {
+            element.textContent = originalText;
+            element.style.background = '';
+          }, 1500);
+        } catch (err) {
+          console.warn('Copy failed:', err);
+        }
+      }
+    }
 
   </script>
 </body>
