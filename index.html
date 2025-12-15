@@ -48,9 +48,8 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:12px;
-      overflow-y: auto;   
-  	  overflow-x: hidden;
+      padding:12px;  
+  	  overflow: hidden;
       height:100vh;
       width:100vw;
       position:relative;
@@ -593,7 +592,7 @@
 
   .wrap {
     padding: 2px;
-    max-height: 100vh;
+    max-height: none;
   }
 
   .invite-card {
@@ -601,7 +600,7 @@
     gap: 8px;
     border-radius: 14px;
     box-shadow: var(--shadow-md);
-    max-height: calc(100vh - 12px);
+    max-height: none;
     animation: cardEntranceMobile 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
     will-change: auto;
   }
